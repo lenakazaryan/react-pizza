@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.arrow-move {
+  transform: rotate(180deg);
+  position: sticky;
+  margin-left: 20px;
+  transition: max-height 1s ease;
+}
+

@@ -1,0 +1,61 @@
+{
+  "pizzas": [
+    {
+      "id": 1,
+      "name": "Чизбургер-пицца",
+      "type": "meat",
+      "src": "/images/cheeseburger.svg",
+      "price": "395"
+    },
+    {
+      "id": 2,
+      "name": "Сырная",
+      "type": "vegetarian",
+      "src": "/images/cheese.svg",
+      "price": "450"
+    },
+    {
+      "id": 3,
+      "name": "Креветки по-азиатски",
+      "type": "meat",
+      "src": "/images/shrimp.svg",
+      "price": "290"
+    },
+    {
+      "id": 4,
+      "name": "Сырный цыпленок",
+      "type": "closed",
+      "src": "/images/cheese_ham.svg",
+      "price": "385"
+    },
+    {
+      "id": 5,
+      "name": "Чизбургер-пицца",
+      "type": "meat",
+      "src": "/images/cheeseburger.svg",
+      "price": "395"
+    },
+    {
+      "id": 6,
+      "name": "Сырная",
+      "type": "vegetarian",
+      "src": "/images/cheese.svg",
+      "price": "450"
+    },
+    {
+      "id": 7,
+      "name": "Креветки по-азиатски",
+      "type": "meat",
+      "sortByAlphabet": "poAlfavitu",
+      "src": "/images/shrimp.svg",
+      "price": "290"
+    },
+    {
+      "id": 8,
+      "name": "Сырный цыпленок",
+      "type": "closed",
+      "src": "/images/cheese_ham.svg",
+      "price": "385"
+    }
+  ]
+}
