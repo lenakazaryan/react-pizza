@@ -13,8 +13,8 @@ const Select = () => {
     <div className="absolute top-[20px] left-0 font-xs font-bold w-[130px] bg-lightGray mt-[3px] p-[15px]">
       {sortPizzasArr.map((item) => (
         <p
-          className="cursor-pointer"
           key={item.id}
+          className="cursor-pointer"
           onClick={() => sortPizzaPriceeeeeeeeeee(item)}
         >
           {item.name}

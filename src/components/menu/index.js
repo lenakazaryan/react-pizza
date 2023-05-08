@@ -37,33 +37,34 @@ bg-lightGray
 
 
 const Menu = () => {
-  const open = useSelector(selectIsOpenSelector);
   const dispatch = useDispatch();
+  const open = useSelector(selectIsOpenSelector);
   const menuActive = useSelector(menuSelector);
 
-  const toggleDropdown = (e) => {
+  const toggleDropdown = e => {
     dispatch(toggleSelect(e.target.name));
   };
 
-  const filterPizzaTypes = (e) => {
-    dispatch(setPizzaType(e.target.type));
-    console.log(menuActive, "ma");
-    dispatch(setIsActive(e.target.id));
+  const filterPizzaTypes = e => {
+    const { id, type } = e.target;
+
+    dispatch(setPizzaType(type));
+    dispatch(setIsActive(id));
   };
 
   return (
     <Container>
       <div className="flex gap-[40px] ">
-        {filtredTypes.map((item) => (
+        {filtredTypes.map(({ id, type, price, name}) => (
           <MenuItem
-            id={item.id}
-            key={item.id}
-            price={item.price}
-            type={item.type}
+            id={id}
+            key={id}
+            type={type}
+            price={price}
             onClick={filterPizzaTypes}
-            className={menuActive === item.id.toString() ? "active" : ""}
+            className={menuActive === id.toString() ? "active" : ""}
           >
-            {item.name}
+            {name}
           </MenuItem>
         ))}
       </div>
