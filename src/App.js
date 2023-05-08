@@ -1,8 +1,7 @@
 import "./App.css";
 import Header from "./components/header";
-import Menu from "./components/menu";
-import Pizza from "./components/pizza";
 import tw from "tailwind-styled-components";
+import { Outlet } from "react-router-dom";
 
 const Container = tw.div`
   p-[20px]
@@ -21,8 +20,7 @@ function App() {
       <Container>
         <Content>
           <Header />
-          <Menu />
-          <Pizza />
+          <Outlet />
         </Content>
       </Container>
     </div>

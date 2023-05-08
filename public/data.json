@@ -46,7 +46,6 @@
       "id": 7,
       "name": "Креветки по-азиатски",
       "type": "meat",
-      "sortByAlphabet": "poAlfavitu",
       "src": "/images/shrimp.svg",
       "price": "290"
     },

@@ -10,12 +10,25 @@ export const filtredTypes = [
 export const sortPizzasArr = [
   {
     id: 1,
-    sortItem: "pocene",
+    sortItem: "byPrice",
     name: "по цене",
   },
   {
     id: 2,
-    sortItem: "poAlfavitu",
+    sortItem: "byAlphabet",
     name: "по алфавиту",
+  },
+];
+
+export const pizzaWeight = [
+  {
+    id: 1,
+    weight: "thin",
+    name: "тонкое",
+  },
+  {
+    id: 2,
+    weight: "traditional",
+    name: "традиционное",
   },
 ];

@@ -4,11 +4,14 @@ import {
   toggleSelect,
   selectIsOpenSelector,
   setPizzaType,
+  setIsActive,
+  menuSelector,
 } from "../../redux/slices/pizzasSlice";
 
 import tw from "tailwind-styled-components";
 import Arrow from "../../assests/images/arrow_select.svg";
 import Select from "../select";
+import "./style.css";
 
 const Container = tw.div`
  flex
@@ -19,16 +22,24 @@ const Container = tw.div`
  gap-[8px]
 `;
 
-// const Nav = tw.div`
-//  flex
-//  list-none
-//  justify-between
-//  gap-[50px]
-// `;
+const MenuItem = tw.li`
+bg-lightGray
+  pt-[13px]
+  cursor-pointer
+  pb-[16px]
+  pl-[25px]
+  pr-[25px]
+  rounded-[30px]
+  block
+  font-s
+  font-bold
+`;
+
 
 const Menu = () => {
   const open = useSelector(selectIsOpenSelector);
   const dispatch = useDispatch();
+  const menuActive = useSelector(menuSelector);
 
   const toggleDropdown = (e) => {
     dispatch(toggleSelect(e.target.name));
@@ -36,22 +47,24 @@ const Menu = () => {
 
   const filterPizzaTypes = (e) => {
     dispatch(setPizzaType(e.target.type));
-    console.log(dispatch(setPizzaType(e.target.type)), "p");
+    console.log(menuActive, "ma");
+    dispatch(setIsActive(e.target.id));
   };
 
   return (
     <Container>
-      <div className="flex gap-[40px]">
+      <div className="flex gap-[40px] ">
         {filtredTypes.map((item) => (
-          <li
+          <MenuItem
+            id={item.id}
             key={item.id}
             price={item.price}
             type={item.type}
             onClick={filterPizzaTypes}
-            className="bg-lightGray pt-[13px] cursor-pointer pb-[16px] pl-[25px] pr-[25px] rounded-[30px] block font-s font-bold"
+            className={menuActive === item.id.toString() ? "active" : ""}
           >
             {item.name}
-          </li>
+          </MenuItem>
         ))}
       </div>
       <div className="flex gap-[10px]">
@@ -62,7 +75,7 @@ const Menu = () => {
         <div className="select flex flex-col relative">
           <div
             onClick={toggleDropdown}
-            className="cursor-pointer font-bold font-xs"
+            className="cursor-pointer font-bold font-xs mr-[50px]"
           >
             pop
           </div>

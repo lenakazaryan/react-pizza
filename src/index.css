@@ -15,3 +15,6 @@ body {
   transition: max-height 1s ease;
 }
 
+.arrow > svg {
+  fill: red !important;
+}
