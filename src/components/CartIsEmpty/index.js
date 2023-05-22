@@ -1,4 +1,4 @@
-import EmptyCart from "../../assests/images/empty_cart.svg";
+import EmptyCart from "../../assets/images/empty_cart.svg";
 import tw from "tailwind-styled-components";
 import { Link } from "react-router-dom";
 

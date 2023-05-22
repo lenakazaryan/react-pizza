@@ -1,13 +1,16 @@
 import { Link } from "react-router-dom";
-import tw from "tailwind-styled-components";
-import Cart from "../../assests/images/cart.svg";
-import Remove from "../../assests/images/remove.svg";
-import ArrowBack from "../../assests/images/arrow_back.svg";
 import { useSelector, useDispatch } from "react-redux";
-import { addToCartSelector } from "../../redux/slices/pizzasSlice";
-import CartItem from "../cartItem";
-import CartIsEmpty from "../cartIsEmpty.js";
+
+import Cart from "../../assets/images/cart.svg";
+import Remove from "../../assets/images/remove.svg";
+import ArrowBack from "../../assets/images/arrow_back.svg";
+
+import CartItem from "../CartItem";
+import CartIsEmpty from "../CartIsEmpty/index.js";
 import { removeFromCart } from "../../redux/slices/pizzasSlice";
+import { addToCartSelector } from "../../redux/slices/pizzasSlice";
+
+import tw from "tailwind-styled-components";
 
 const Container = tw.div`
  container

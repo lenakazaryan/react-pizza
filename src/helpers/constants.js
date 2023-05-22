@@ -1,4 +1,4 @@
-export const filtredTypes = [
+export const FILTERED_TYPES = [
   { id: 1, type: "all", name: "Все" },
   { id: 2, type: "meat", name: "Мясные" },
   { id: 3, type: "vegetarian", name: "Вегетарианские" },
@@ -7,7 +7,7 @@ export const filtredTypes = [
   { id: 6, type: "closed", name: "Закрытые" },
 ];
 
-export const sortPizzasArr = [
+export const SORT_PIZZAS = [
   {
     id: 1,
     sortItem: "byPrice",
@@ -20,7 +20,7 @@ export const sortPizzasArr = [
   },
 ];
 
-export const pizzaWeight = [
+export const PIZZAS_WEIGHTS = [
   {
     id: 1,
     weight: "thin",

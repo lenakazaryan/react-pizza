@@ -1,5 +1,6 @@
-import { filtredTypes } from "../../helpers/constants";
 import { useSelector, useDispatch } from "react-redux";
+import { FILTERED_TYPES } from "../../helpers/constants";
+
 import {
   toggleSelect,
   selectIsOpenSelector,
@@ -9,67 +10,70 @@ import {
 } from "../../redux/slices/pizzasSlice";
 
 import tw from "tailwind-styled-components";
-import Arrow from "../../assests/images/arrow_select.svg";
-import Select from "../select";
+import Arrow from "../../assets/images/arrow_select.svg";
+import Select from "../Select";
+
 import "./style.css";
 
 const Container = tw.div`
  flex
  flex-row
- justify-between
- items-center
  container
  gap-[8px]
+ items-center
+ justify-between
 `;
 
 const MenuItem = tw.li`
-bg-lightGray
-  pt-[13px]
-  cursor-pointer
-  pb-[16px]
-  pl-[25px]
-  pr-[25px]
-  rounded-[30px]
   block
   font-s
   font-bold
+  pt-[13px]
+  pb-[16px]
+  pl-[25px]
+  pr-[25px]
+  bg-lightGray
+  cursor-pointer
+  rounded-[30px]
 `;
 
-
 const Menu = () => {
-  const open = useSelector(selectIsOpenSelector);
   const dispatch = useDispatch();
   const menuActive = useSelector(menuSelector);
+  const isOpen = useSelector(selectIsOpenSelector);
 
   const toggleDropdown = (e) => {
     dispatch(toggleSelect(e.target.name));
   };
 
   const filterPizzaTypes = (e) => {
-    dispatch(setPizzaType(e.target.type));
-    console.log(menuActive, "ma");
     dispatch(setIsActive(e.target.id));
+    dispatch(setPizzaType(e.target.type));
   };
 
   return (
     <Container>
       <div className="flex gap-[40px] ">
-        {filtredTypes.map((item) => (
+        {FILTERED_TYPES.map(({ id, price, type, name }) => (
           <MenuItem
-            id={item.id}
-            key={item.id}
-            price={item.price}
-            type={item.type}
+            id={id}
+            key={id}
+            price={price}
+            type={type}
             onClick={filterPizzaTypes}
-            className={menuActive === item.id.toString() ? "active" : ""}
+            className={menuActive === id.toString() ? "active" : ""}
           >
-            {item.name}
+            {name}
           </MenuItem>
         ))}
       </div>
       <div className="flex gap-[10px]">
         <div className="flex gap-[7px] ">
-          <img className={`${open ? "arrow-move" : ""}`} src={Arrow} alt="no" />
+          <img
+            className={`${isOpen ? "arrow-move" : ""}`}
+            src={Arrow}
+            alt="no"
+          />
           <span className="font-xs font-bold">Сортировка по:</span>
         </div>
         <div className="select flex flex-col relative">
@@ -79,7 +83,7 @@ const Menu = () => {
           >
             pop
           </div>
-          {open && <Select />}
+          {isOpen && <Select />}
         </div>
       </div>
     </Container>

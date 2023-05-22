@@ -8,9 +8,8 @@ import {
   addToCart,
 } from "../../redux/slices/pizzasSlice";
 
-import Menu from "../menu";
-import { pizzaWeight } from "../../helpers/constants";
-
+import Menu from "../Menu";
+import { PIZZAS_WEIGHTS } from "../../helpers/constants";
 
 const Pizza = () => {
   const pizzasData1 = useSelector(pizzasDataSelector);
@@ -28,11 +27,10 @@ const Pizza = () => {
       });
   }, []);
 
-  const addToCartt = (item) => {
+  const handleAddingToCart = (item) => {
     dispatch(addToCart(item));
     console.log(item);
   };
-
 
   return (
     <>
@@ -42,8 +40,6 @@ const Pizza = () => {
           .filter((item) =>
             pizzaType === "all" ? true : item.type === pizzaType
           )
-
-
 
           // need to improve
           // .sort((a, b) => (sortedPizzas === "byPrice" ? a.price - b.price : ""))
@@ -76,11 +72,11 @@ const Pizza = () => {
                   </p>
                   <div className="bg-pizzaTypeColor cursor-pointer">
                     <div className="flex gap-[5px] justify-around font-bold items-center">
-                      {pizzaWeight.map((item) => {
-                        return (
-                          <p className="px-[13px] py-[6px]">{item.name}</p>
-                        );
-                      })}
+                      {PIZZAS_WEIGHTS.map(({ name, id }) => (
+                        <p key={id} className="px-[13px] py-[6px]">
+                          {name}
+                        </p>
+                      ))}
                     </div>
                     <div className="flex gap-[10px] justify-around font-bold mb-[17px]">
                       <p>26 sm</p>
@@ -91,7 +87,7 @@ const Pizza = () => {
                   <div className="flex gap-[36px] justify-around">
                     <p className="text-l font-bold">от {item.price} ₽</p>
                     <div
-                      onClick={() => addToCartt(item)}
+                      onClick={() => handleAddingToCart(item)}
                       className="hover:bg-orange hover:text-white transition ease-in-out delay-100 cursor-pointer text-s font-bold text-lightOrange border rounded-[30px] pb-[8px] pt-[8px] px-[16px] border-lightOrange"
                     >
                       + Добавить

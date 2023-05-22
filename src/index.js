@@ -1,12 +1,16 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import "./index.css";
-import App from "./App";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+
 import { store } from "./redux/store";
 import { Provider } from "react-redux";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import ShoppingCart from "./components/shoppingCart";
-import Pizza from "./components/pizza";
+
+import App from "./App";
+
+import ShoppingCart from "./components/ShoppingCart";
+import Pizza from "./components/Pizza";
+
+import "./index.css";
 
 const router = createBrowserRouter([
   {
@@ -15,7 +19,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "pizza",
-        element: <Pizza/>,
+        element: <Pizza />,
       },
       {
         path: "shoppingcart",
@@ -32,12 +36,3 @@ root.render(
   </Provider>
 );
 
-
-
-
-
-// ReactDOM.createRoot(document.getElementById("root")).render(
-//   <React.StrictMode>
-//     <RouterProvider router={router} />
-//   </React.StrictMode>
-// );
