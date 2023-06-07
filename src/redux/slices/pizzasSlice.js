@@ -7,7 +7,29 @@ const initialState = {
   pizzaType: "all",
   sortPizza: "",
   cart: [],
+  // card2: {
+  //   7: [
+  //     {
+  //       type: 1,
+  //       size: 2,
+  //       price: 270,
+  //     },
+  //     {
+  //       type: 1,
+  //       size: 3,
+  //       price: 310,
+  //     },
+  //   ],
+  //   8: [
+  //     {
+  //       type: 1,
+  //       size: 2,
+  //       price: 370,
+  //     },
+  //   ],
+  // },
   PizzasActiveId: "",
+  sauces: [],
 };
 
 export const counterSlice = createSlice({
@@ -17,25 +39,30 @@ export const counterSlice = createSlice({
     toggleSelect: (state) => {
       state.isSelectOpen = !state.isSelectOpen;
     },
-    setData: (state, action) => {
-      state.pizzasData = action.payload;
+    setData: (state, { payload }) => {
+      state.pizzasData = payload;
     },
-    setPizzaType: (state, action) => {
-      state.pizzaType = action.payload;
+    setPizzaType: (state, { payload }) => {
+      state.pizzaType = payload;
     },
-    sortPizzaPrice: (state, action) => {
-      state.sortPizza = action.payload;
+    sortPizzaPrice: (state, { payload }) => {
+      state.sortPizza = payload;
     },
-    addToCart: (state, action) => {
-      state.cart.push(action.payload);
+    addToCart: (state, { payload }) => {
+      state.cart.push(payload);
     },
-    removeFromCart: (state, action) => {
+    addToCart2: (state, { payload }) => {
+      state.cart.push(payload);
+    },
+    removeFromCart: (state, { payload }) => {
       // state.cart = state.cart.filter()
-      console.log(action.payload);
+      console.log(payload);
     },
-    setIsActive: (state, action) => {
-      state.isActive = action.payload;
-      console.log(action.payload, "action.payload");
+    setIsActive: (state, { payload }) => {
+      state.PizzasActiveId = payload;
+    },
+    setSauces: (state, { payload }) => {
+      state.sauces = payload;
     },
   },
 });
@@ -46,8 +73,10 @@ export const {
   setPizzaType,
   sortPizzaPrice,
   addToCart,
+  addToCart2,
   removeFromCart,
   setIsActive,
+  setSauces,
 } = counterSlice.actions;
 
 export const pizzasDataSelector = (state) => state.pizzas.pizzasData;
@@ -55,6 +84,8 @@ export const selectIsOpenSelector = (state) => state.pizzas.isSelectOpen;
 export const pizzaTypeSelector = (state) => state.pizzas.pizzaType;
 export const sortPizzaSelector = (state) => state.pizzas.sortPizza;
 export const addToCartSelector = (state) => state.pizzas.cart;
-export const menuSelector = (state) => state.pizzas.PizzasActiveId;
+export const addToCartSelector2 = (state) => state.pizzas.cart2;
+export const pizzasActiveIdSelector = (state) => state.pizzas.PizzasActiveId;
+export const saucesSelector = (state) => state.pizzas.sauces;
 
 export default counterSlice.reducer;

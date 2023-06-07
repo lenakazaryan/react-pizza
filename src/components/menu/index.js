@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { FILTERED_TYPES } from "../../helpers/constants";
 
@@ -6,12 +7,13 @@ import {
   selectIsOpenSelector,
   setPizzaType,
   setIsActive,
-  menuSelector,
+  pizzasActiveIdSelector,
 } from "../../redux/slices/pizzasSlice";
 
 import tw from "tailwind-styled-components";
 import Arrow from "../../assets/images/arrow_select.svg";
 import Select from "../Select";
+import SaucesDropdown from "../SaucesDropdown";
 
 import "./style.css";
 
@@ -39,21 +41,34 @@ const MenuItem = tw.li`
 
 const Menu = () => {
   const dispatch = useDispatch();
-  const menuActive = useSelector(menuSelector);
   const isOpen = useSelector(selectIsOpenSelector);
+  const menuActive = useSelector(pizzasActiveIdSelector);
+
+  const [isHovering, setIsHovering] = useState(false);
 
   const toggleDropdown = (e) => {
     dispatch(toggleSelect(e.target.name));
   };
 
   const filterPizzaTypes = (e) => {
-    dispatch(setIsActive(e.target.id));
-    dispatch(setPizzaType(e.target.type));
+    const { id, type } = e.target;
+
+    dispatch(setPizzaType(type));
+    dispatch(setIsActive(id));
+    console.log(id);
+  };
+
+  const handleMouseOver = () => {
+    setIsHovering(true);
+  };
+
+  const handleMouseOut = () => {
+    setIsHovering(false);
   };
 
   return (
     <Container>
-      <div className="flex gap-[40px] ">
+      <div className="flex gap-[40px] relative">
         {FILTERED_TYPES.map(({ id, price, type, name }) => (
           <MenuItem
             id={id}
@@ -67,6 +82,11 @@ const Menu = () => {
           </MenuItem>
         ))}
       </div>
+      <div onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
+        Our Products
+        {isHovering && <SaucesDropdown />}
+      </div>
+
       <div className="flex gap-[10px]">
         <div className="flex gap-[7px] ">
           <img

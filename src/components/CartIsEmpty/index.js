@@ -1,6 +1,9 @@
 import EmptyCart from "../../assets/images/empty_cart.svg";
-import tw from "tailwind-styled-components";
+
 import { Link } from "react-router-dom";
+import { PIZZAS_ROUTE } from "../../constants/routes";
+
+import tw from "tailwind-styled-components";
 
 const Button = tw.button`
 bg-buttonBg
@@ -24,8 +27,8 @@ const CartIsEmpty = () => {
         Для того, чтобы заказать пиццу, перейди на главную страницу.
       </p>
       <img className="w-[300px] pb-[20px]" src={EmptyCart} alt="no" />
-      <Link to="/pizza">
-      <Button>Вернуться назад</Button>
+      <Link to={PIZZAS_ROUTE}>
+        <Button>Вернуться назад</Button>
       </Link>
     </div>
   );

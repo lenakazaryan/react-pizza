@@ -56,5 +56,25 @@
       "src": "/images/cheese_ham.svg",
       "price": "385"
     }
+  ],
+  "sauces": [
+    {
+      "id": 1,
+      "name": "Томатный соус",
+      "src": "/images/tomato_sauce.png",
+      "price": "50"
+    },
+    {
+      "id": 2,
+      "name": "Сырный соус",
+      "src": "/images/cheese_sauce.webp",
+      "price": "70"
+    },
+    {
+      "id": 3,
+      "name": "Чесночный соус",
+      "src": "/images/garlic_sauce.jpg",
+      "price": "85"
+    }
   ]
 }

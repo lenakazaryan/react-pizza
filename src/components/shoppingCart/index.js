@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
 import Cart from "../../assets/images/cart.svg";
@@ -8,7 +8,8 @@ import ArrowBack from "../../assets/images/arrow_back.svg";
 import CartItem from "../CartItem";
 import CartIsEmpty from "../CartIsEmpty/index.js";
 import { removeFromCart } from "../../redux/slices/pizzasSlice";
-import { addToCartSelector } from "../../redux/slices/pizzasSlice";
+import { addToCartSelector, addToCartSelector2 } from "../../redux/slices/pizzasSlice";
+import { PIZZAS_ROUTE } from "../../constants/routes";
 
 import tw from "tailwind-styled-components";
 
@@ -56,30 +57,30 @@ const ShoppingCart = () => {
   //   dispatch(removeFromCart(item.id));
   // };
 
-  const cartData = useSelector(addToCartSelector);
+  const cartData = useSelector(addToCartSelector2);
+  const cardKeys = Object.keys(cartData)
 
   return (
     <Container>
       <Content>
-        <header
-          style={!cartData.length ? { display: "none" } : { display: "flex" }}
-          className="flex justify-between items-center pb-[61px]"
-        >
-          <div>
-            <div className="flex items-center justify-center gap-[12px]">
-              <img src={Cart} alt="no" />
-              <p className="text-2xl font-bold">Корзина</p>
+        {!cardKeys.length && (
+          <header className="flex justify-between items-center pb-[61px]">
+            <div>
+              <div className="flex items-center justify-center gap-[12px]">
+                <img src={Cart} alt="no" />
+                <p className="text-2xl font-bold">Корзина</p>
+              </div>
             </div>
-          </div>
-          <div className="flex justify-center items-center gap-[7px]">
-            <img src={Remove} alt="no" />
-            <p>Очистка корзины</p>
-          </div>
-        </header>
-        {!cartData.length ? (
+            <div className="flex justify-center items-center gap-[7px]">
+              <img src={Remove} alt="no" />
+              <p>Очистка корзины</p>
+            </div>
+          </header>
+        )}
+        {!cardKeys.length ? (
           <CartIsEmpty />
         ) : (
-          cartData.map((item) => (
+          cardKeys.map((item) => (
             <CartItem
               removePizza={() => dispatch(removeFromCart(item.id))}
               name={item.name}
@@ -92,12 +93,12 @@ const ShoppingCart = () => {
           style={!cartData.length ? { display: "none" } : { display: "flex" }}
           className="flex justify-between pb-[131px]"
         >
-          <Link to="/pizza">
+          <NavLink to={PIZZAS_ROUTE}>
             <ButtonGoPrev>
               <img className="arrow" src={ArrowBack} alt="no" />
               <span>Вернуться назад</span>
             </ButtonGoPrev>
-          </Link>
+          </NavLink>
           <ButtonPay>Оплатить сейчас</ButtonPay>
         </footer>
       </Content>
