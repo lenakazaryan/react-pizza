@@ -1,3 +1,3 @@
-export const PIZZAS_ROUTE = "/pizza";
-export const SHOPPING_CART = "/shoppingCart";
+export const PIZZAS_ROUTE = "/Pizza";
+export const SHOPPING_CART = "/ShoppingCart";
 export const SAUCES = "/sauces";

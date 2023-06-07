@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import {createSlice} from "@reduxjs/toolkit";
 
 const initialState = {
   pizzasData: [],
@@ -7,27 +7,6 @@ const initialState = {
   pizzaType: "all",
   sortPizza: "",
   cart: [],
-  // card2: {
-  //   7: [
-  //     {
-  //       type: 1,
-  //       size: 2,
-  //       price: 270,
-  //     },
-  //     {
-  //       type: 1,
-  //       size: 3,
-  //       price: 310,
-  //     },
-  //   ],
-  //   8: [
-  //     {
-  //       type: 1,
-  //       size: 2,
-  //       price: 370,
-  //     },
-  //   ],
-  // },
   PizzasActiveId: "",
   sauces: [],
 };
@@ -36,32 +15,43 @@ export const counterSlice = createSlice({
   name: "pizzas",
   initialState,
   reducers: {
+    addPizza: (state, {payload}) => {
+      const {id, size, type, price} = payload
+
+      const targetPizzaIndex = state.cart.findIndex(pizza => pizza.id === id && pizza.size === size && pizza.type === type)
+
+      if (targetPizzaIndex > -1) {
+        state.cart[targetPizzaIndex].count++
+      } else {
+        state.cart.push({id, size, type, price, count: 1})
+      }
+    },
     toggleSelect: (state) => {
       state.isSelectOpen = !state.isSelectOpen;
     },
-    setData: (state, { payload }) => {
+    setData: (state, {payload}) => {
       state.pizzasData = payload;
     },
-    setPizzaType: (state, { payload }) => {
+    setPizzaType: (state, {payload}) => {
       state.pizzaType = payload;
     },
-    sortPizzaPrice: (state, { payload }) => {
+    sortPizzaPrice: (state, {payload}) => {
       state.sortPizza = payload;
     },
-    addToCart: (state, { payload }) => {
+    addToCart: (state, {payload}) => {
       state.cart.push(payload);
     },
-    addToCart2: (state, { payload }) => {
+    addToCart2: (state, {payload}) => {
       state.cart.push(payload);
     },
-    removeFromCart: (state, { payload }) => {
+    removeFromCart: (state, {payload}) => {
       // state.cart = state.cart.filter()
       console.log(payload);
     },
-    setIsActive: (state, { payload }) => {
+    setIsActive: (state, {payload}) => {
       state.PizzasActiveId = payload;
     },
-    setSauces: (state, { payload }) => {
+    setSauces: (state, {payload}) => {
       state.sauces = payload;
     },
   },
@@ -73,7 +63,7 @@ export const {
   setPizzaType,
   sortPizzaPrice,
   addToCart,
-  addToCart2,
+  addPizza,
   removeFromCart,
   setIsActive,
   setSauces,
